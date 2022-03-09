@@ -3,6 +3,13 @@ const ytNotifs = require("youtube-notifs");
 const { Client, Intents } = require("discord.js");
 const config = require("../config.json");
 
+if (config.debugModeEnabled)
+
+logger.config({
+    debugEnabled: config.debugModeEnabled,
+    useAnsiColours: config.ansiColoursEnabled
+});
+
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS
@@ -18,9 +25,6 @@ client.once("ready", () => {
     ytNotifs.start(
         config.newVidCheckIntervalInSeconds,
         "./data.json",
-        config.preventDuplicateSubscriptions,
-        config.dataFileAutoSaveIntervalInSeconds,
-        config.debugModeEnabled
     );
     ytNotifs.subscribe(config.subscriptions);
 });

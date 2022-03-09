@@ -1,6 +1,6 @@
 {
   "name": "youtube_notifications_bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Get Discord notifications when certain Youtube channels upload a new video",
   "main": "./src/index.js",
   "repository": {
@@ -13,8 +13,8 @@
   },
   "homepage": "https://github.com/James-Bennett-295/youtube_notifications_bot#readme",
   "dependencies": {
-    "@james-bennett-295/logger": "^1.0.0",
+    "@james-bennett-295/logger": "^2.2.1",
     "discord.js": "^13.5.0",
-    "youtube-notifs": "^2.6.2"
+    "youtube-notifs": "^2.9.7"
   }
 }

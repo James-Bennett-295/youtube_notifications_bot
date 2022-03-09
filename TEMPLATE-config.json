@@ -3,8 +3,7 @@
     "discordChannelId": "000000000000000000",
     "msg": "{channelName} just uploaded a new video!\n{vidUrl}",
     "newVidCheckIntervalInSeconds": 60,
-    "preventDuplicateSubscriptions": true,
-    "dataFileAutoSaveIntervalInSeconds": 60,
     "debugModeEnabled": false,
+    "ansiColoursEnabled": true,
     "subscriptions": ["UCBa659QWEk1AI4Tg--mrJ2A"]
 }
