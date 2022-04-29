@@ -15,6 +15,6 @@
   "dependencies": {
     "@james-bennett-295/logger": "^2.2.1",
     "discord.js": "^13.5.0",
-    "youtube-notifs": "^2.9.7"
+    "youtube-notifs": "^3.0.0"
   }
 }
