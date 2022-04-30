@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import ytNotifs from "youtube-notifs";
-const logger = require("@james-bennett-295/logger");
-const { Client, Intents } = require("discord.js");
+import logger from "@james-bennett-295/logger";
+import { Client, Intents } from "discord.js";
 
-const cfg = JSON.parse(fs.readFileSync("../config.json"));
+const cfg = JSON.parse(fs.readFileSync("./config.json"));
 
 logger.config({
     debugEnabled: cfg.debugModeEnabled,
