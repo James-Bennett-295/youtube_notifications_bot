@@ -1,4 +1,4 @@
-import { Notifier } from "youtube-notifs";
+import { Notifier, Video } from "youtube-notifs";
 import discord from "discord.js";
 import cfg from "../config.json";
 
@@ -15,7 +15,7 @@ client.once(discord.Events.ClientReady, (client) => {
 
 	const notifier = new Notifier(cfg.newVidCheckIntervalInSeconds, "./data.json");
 
-	notifier.on("error", (err) => {
+	notifier.on("error", (err: Error) => {
 		console.error(err);
 	});
 
@@ -25,7 +25,7 @@ client.once(discord.Events.ClientReady, (client) => {
 		});
 	}
 
-	notifier.on("newVid", (video) => {
+	notifier.on("newVid", (video: Video) => {
 		const msg = cfg.msg
 			.replace("{title}", video.title)
 			.replace("{url}", video.url)

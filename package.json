@@ -6,6 +6,6 @@
 	},
 	"dependencies": {
 		"discord.js": "^14.6.0",
-		"youtube-notifs": "^4.0.3"
+		"youtube-notifs": "^4.0.5"
 	}
 }
