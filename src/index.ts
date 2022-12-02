@@ -15,17 +15,11 @@ client.once(discord.Events.ClientReady, (client) => {
 
 	const notifier = new Notifier(cfg.newVidCheckIntervalInSeconds, "./data.json");
 
-	notifier.on("error", (err: Error) => {
-		console.error(err);
-	});
+	notifier.onError = console.error;
 
-	if (cfg.debugModeEnabled) {
-		notifier.on("debug", (log) => {
-			console.debug(log);
-		});
-	}
+	if (cfg.debugModeEnabled) notifier.onDebug = console.debug;
 
-	notifier.on("newVid", (video: Video) => {
+	notifier.onNewVideo = (video: Video) => {
 		const msg = cfg.msg
 			.replace("{title}", video.title)
 			.replace("{url}", video.url)
@@ -42,7 +36,7 @@ client.once(discord.Events.ClientReady, (client) => {
 			.replace("{channelId}", video.channel.id)
 			.replace("{channelReleased}", video.channel.released.toString());
 		channel.send(msg);
-	});
+	}
 
 	notifier.subscribe(cfg.subscriptions);
 

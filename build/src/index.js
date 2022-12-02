@@ -15,15 +15,10 @@ client.once(discord_js_1.default.Events.ClientReady, (client) => {
     console.info(`Logged in as: ${client.user.tag}`);
     const channel = client.channels.cache.get(config_json_1.default.discordChannelId);
     const notifier = new youtube_notifs_1.Notifier(config_json_1.default.newVidCheckIntervalInSeconds, "./data.json");
-    notifier.on("error", (err) => {
-        console.error(err);
-    });
-    if (config_json_1.default.debugModeEnabled) {
-        notifier.on("debug", (log) => {
-            console.debug(log);
-        });
-    }
-    notifier.on("newVid", (video) => {
+    notifier.onError = console.error;
+    if (config_json_1.default.debugModeEnabled)
+        notifier.onDebug = console.debug;
+    notifier.onNewVideo = (video) => {
         const msg = config_json_1.default.msg
             .replace("{title}", video.title)
             .replace("{url}", video.url)
@@ -40,7 +35,7 @@ client.once(discord_js_1.default.Events.ClientReady, (client) => {
             .replace("{channelId}", video.channel.id)
             .replace("{channelReleased}", video.channel.released.toString());
         channel.send(msg);
-    });
+    };
     notifier.subscribe(config_json_1.default.subscriptions);
     notifier.start();
 });
