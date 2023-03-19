@@ -2,9 +2,8 @@
 	"token": "BOTTOKEN",
 	"discordChannelId": "000000000000000000",
 	"msg": "{channelName} just uploaded a new video!\n{vidUrl}",
-	"newVidCheckIntervalInSeconds": 60,
+	"newVidCheckIntervalInMinutes": 15,
 	"debugModeEnabled": false,
-	"ansiColoursEnabled": true,
 	"subscriptions": [
 		"UCBa659QWEk1AI4Tg--mrJ2A"
 	]

@@ -14,7 +14,16 @@ const client = new discord_js_1.default.Client({
 client.once(discord_js_1.default.Events.ClientReady, (client) => {
     console.info(`Logged in as: ${client.user.tag}`);
     const channel = client.channels.cache.get(config_json_1.default.discordChannelId);
-    const notifier = new youtube_notifs_1.Notifier(config_json_1.default.newVidCheckIntervalInSeconds, "./data.json");
+    const notifier = new youtube_notifs_1.Notifier({
+        subscription: {
+            method: youtube_notifs_1.SubscriptionMethods.Polling,
+            interval: config_json_1.default.newVidCheckIntervalInMinutes
+        },
+        dataStorage: {
+            method: youtube_notifs_1.DataStorageMethods.File,
+            file: "./data.json"
+        }
+    });
     notifier.onError = console.error;
     if (config_json_1.default.debugModeEnabled)
         notifier.onDebug = console.debug;
