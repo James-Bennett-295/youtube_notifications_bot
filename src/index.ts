@@ -48,7 +48,7 @@ client.once(discord.Events.ClientReady, (client) => {
 		channel.send(msg);
 	}
 
-	notifier.subscribe(cfg.subscriptions);
+	notifier.subscribe(...cfg.subscriptions);
 
 	notifier.start();
 });

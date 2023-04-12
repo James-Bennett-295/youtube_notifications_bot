@@ -28,24 +28,28 @@ client.once(discord_js_1.default.Events.ClientReady, (client) => {
     if (config_json_1.default.debugModeEnabled)
         notifier.onDebug = console.debug;
     notifier.onNewVideo = (video) => {
-        const msg = config_json_1.default.msg
-            .replace("{title}", video.title)
-            .replace("{url}", video.url)
-            .replace("{id}", video.id)
-            .replace("{released}", video.released.toString())
-            .replace("{description}", video.description)
-            .replace("{width}", video.width.toString())
-            .replace("{height}", video.height.toString())
-            .replace("{thumbWidth}", video.thumb.width.toString())
-            .replace("{thumbHeight}", video.thumb.height.toString())
-            .replace("{thumbUrl}", video.thumb.url)
-            .replace("{channelTitle}", video.channel.title)
-            .replace("{channelUrl}", video.channel.url)
-            .replace("{channelId}", video.channel.id)
-            .replace("{channelReleased}", video.channel.released.toString());
+        const msg = config_json_1.default.msg.replace(/\{(.+?)\}/g, (full, name) => {
+            var _a;
+            return (_a = ({
+                title: video.title,
+                url: video.url,
+                id: video.id,
+                released: video.released.toString(),
+                description: video.description,
+                width: video.width.toString(),
+                height: video.height.toString(),
+                thumbWidth: video.thumb.width.toString(),
+                thumbHeight: video.thumb.height.toString(),
+                thumbUrl: video.thumb.url,
+                channelTitle: video.channel.title,
+                channelUrl: video.channel.url,
+                channelId: video.channel.id,
+                channelReleased: video.channel.released.toString()
+            })[name]) !== null && _a !== void 0 ? _a : full;
+        });
         channel.send(msg);
     };
-    notifier.subscribe(config_json_1.default.subscriptions);
+    notifier.subscribe(...config_json_1.default.subscriptions);
     notifier.start();
 });
 client.login(config_json_1.default.token);
